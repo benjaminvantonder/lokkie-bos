@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Noto+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream: #f8f7f0;
+    --color-brown: #955e3c;
+    --color-sage: #acb683;
+    --color-red: #b20101;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--color-cream);
+    color: #2c2c2c;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  p, .description {
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 1.6;
+  }
+}
