@@ -1,23 +1,25 @@
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './lib/theme';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Shop from './components/Shop';
-import About from './components/About';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import ShopPage from './pages/ShopPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
-    <ThemeProvider>
-      <div className="min-h-screen transition-colors duration-300">
-        <Header />
-        <Hero />
-        <Shop />
-        <About />
-        <Contact />
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <HashRouter>
+      <ThemeProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </HashRouter>
   );
 }
 
