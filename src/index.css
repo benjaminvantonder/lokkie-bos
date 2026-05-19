@@ -12,10 +12,21 @@
     --color-red: #b20101;
   }
 
+  html {
+    font-size: clamp(16px, 0.5vw + 14px, 19px);
+  }
+
   body {
     font-family: 'Open Sans', sans-serif;
     background-color: var(--color-cream);
     color: #2c2c2c;
+    @apply transition-colors duration-300;
+  }
+
+  .dark body,
+  body.dark {
+    background-color: #111827;
+    color: #f3f4f6;
   }
 
   h1, h2, h3, h4, h5, h6 {

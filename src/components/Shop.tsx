@@ -34,12 +34,12 @@ export default function Shop() {
     : products.filter(p => p.size === filter);
 
   return (
-    <section id="shop" className="py-20 px-4 bg-white/50">
+    <section id="shop" className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-brown text-center mb-4">
+        <h2 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4">
           Our Collection
         </h2>
-        <p className="text-center text-gray-600 font-noto mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto">
           Each piece is crafted with care, bringing together the fluidity of watercolour
           and the precision of fine detail work.
         </p>
@@ -50,7 +50,7 @@ export default function Shop() {
             className={`px-6 py-2 rounded-full font-medium transition-all ${
               filter === 'all'
                 ? 'bg-sage text-cream'
-                : 'bg-cream text-gray-700 hover:bg-sage/20'
+                : 'bg-cream dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-sage/20 dark:hover:bg-sage/30'
             }`}
           >
             All Sizes
@@ -60,7 +60,7 @@ export default function Shop() {
             className={`px-6 py-2 rounded-full font-medium transition-all ${
               filter === 'A5'
                 ? 'bg-sage text-cream'
-                : 'bg-cream text-gray-700 hover:bg-sage/20'
+                : 'bg-cream dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-sage/20 dark:hover:bg-sage/30'
             }`}
           >
             Small (A5)
@@ -70,7 +70,7 @@ export default function Shop() {
             className={`px-6 py-2 rounded-full font-medium transition-all ${
               filter === 'A4'
                 ? 'bg-sage text-cream'
-                : 'bg-cream text-gray-700 hover:bg-sage/20'
+                : 'bg-cream dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-sage/20 dark:hover:bg-sage/30'
             }`}
           >
             Medium (A4)
@@ -80,7 +80,7 @@ export default function Shop() {
             className={`px-6 py-2 rounded-full font-medium transition-all ${
               filter === 'A3'
                 ? 'bg-sage text-cream'
-                : 'bg-cream text-gray-700 hover:bg-sage/20'
+                : 'bg-cream dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-sage/20 dark:hover:bg-sage/30'
             }`}
           >
             Large (A3)

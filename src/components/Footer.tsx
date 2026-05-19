@@ -2,7 +2,7 @@ import { Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-sage text-cream py-8 px-4">
+    <footer className="bg-sage dark:bg-gray-950 text-cream py-8 px-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto text-center">
         <div className="mb-4">
           <h3 className="font-bold text-2xl mb-2">lokkie-bos</h3>

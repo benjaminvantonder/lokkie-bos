@@ -1,3 +1,4 @@
+import { ThemeProvider } from './lib/theme';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Shop from './components/Shop';
@@ -7,14 +8,16 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero />
-      <Shop />
-      <About />
-      <Contact />
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen transition-colors duration-300">
+        <Header />
+        <Hero />
+        <Shop />
+        <About />
+        <Contact />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 

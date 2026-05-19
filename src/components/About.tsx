@@ -2,12 +2,12 @@ import { Brush, Heart, Sparkles } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-4 bg-cream">
+    <section id="about" className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-brown text-center mb-4">
+        <h2 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4">
           About Lokkie-bos
         </h2>
-        <p className="text-center text-gray-600 font-noto mb-16 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-16 max-w-2xl mx-auto">
           Every stroke tells a story, every color holds emotion.
         </p>
 
@@ -18,8 +18,8 @@ export default function About() {
                 <Brush className="text-sage" size={32} />
               </div>
             </div>
-            <h3 className="text-xl font-serif text-brown mb-3">Handcrafted</h3>
-            <p className="font-noto text-gray-600">
+            <h3 className="text-xl font-serif text-brown dark:text-sage mb-3">Handcrafted</h3>
+            <p className="font-noto text-gray-600 dark:text-gray-400">
               Each piece is meticulously created by hand, ensuring unique character and quality in every artwork.
             </p>
           </div>
@@ -30,8 +30,8 @@ export default function About() {
                 <Heart className="text-sage" size={32} />
               </div>
             </div>
-            <h3 className="text-xl font-serif text-brown mb-3">Made with Love</h3>
-            <p className="font-noto text-gray-600">
+            <h3 className="text-xl font-serif text-brown dark:text-sage mb-3">Made with Love</h3>
+            <p className="font-noto text-gray-600 dark:text-gray-400">
               Passion and dedication flow into every creation, bringing warmth and soul to your space.
             </p>
           </div>
@@ -42,18 +42,18 @@ export default function About() {
                 <Sparkles className="text-sage" size={32} />
               </div>
             </div>
-            <h3 className="text-xl font-serif text-brown mb-3">Original Art</h3>
-            <p className="font-noto text-gray-600">
+            <h3 className="text-xl font-serif text-brown dark:text-sage mb-3">Original Art</h3>
+            <p className="font-noto text-gray-600 dark:text-gray-400">
               No two pieces are exactly alike. Own a truly one-of-a-kind work of art.
             </p>
           </div>
         </div>
 
-        <div className="bg-white/50 rounded-2xl p-8 md:p-12">
-          <h3 className="text-2xl font-serif text-brown mb-6 text-center">Price List</h3>
+        <div className="bg-white/50 dark:bg-gray-800/50 rounded-2xl p-8 md:p-12 transition-colors duration-300">
+          <h3 className="text-2xl font-serif text-brown dark:text-sage mb-6 text-center">Price List</h3>
           <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <h4 className="font-bold text-lg mb-4 text-brown">Watercolour</h4>
+              <h4 className="font-bold text-lg mb-4 text-brown dark:text-sage">Watercolour</h4>
               <div className="space-y-2 font-noto">
                 <div className="flex justify-between">
                   <span>Small (A5)</span>
@@ -71,7 +71,7 @@ export default function About() {
             </div>
 
             <div>
-              <h4 className="font-bold text-lg mb-4 text-brown">Fineliner</h4>
+              <h4 className="font-bold text-lg mb-4 text-brown dark:text-sage">Fineliner</h4>
               <div className="space-y-2 font-noto">
                 <div className="flex justify-between">
                   <span>Small (A5)</span>
@@ -89,7 +89,7 @@ export default function About() {
             </div>
 
             <div>
-              <h4 className="font-bold text-lg mb-4 text-brown">Watercolour & Fineliner</h4>
+              <h4 className="font-bold text-lg mb-4 text-brown dark:text-sage">Watercolour & Fineliner</h4>
               <div className="space-y-2 font-noto">
                 <div className="flex justify-between">
                   <span>Small (A5)</span>
@@ -106,7 +106,7 @@ export default function About() {
               </div>
             </div>
           </div>
-          <p className="text-sm font-noto text-gray-600 text-center mt-8 italic">
+          <p className="text-sm font-noto text-gray-600 dark:text-gray-400 text-center mt-8 italic">
             Please note: each custom artwork will incur an additional fee of R60 per hour for
             time spent on the piece. The first hour is free of charge.
           </p>
