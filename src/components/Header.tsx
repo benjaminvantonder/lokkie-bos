@@ -1,6 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import DarkModeToggle from './DarkModeToggle';
 
 const navLinks = [
@@ -57,24 +58,35 @@ export default function Header() {
           </div>
         </div>
 
-        {isMenuOpen && (
-          <nav className="md:hidden pb-4 space-y-2" aria-label="Mobile navigation">
-            {navLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block w-full text-left py-2 transition-colors ${
-                  location.pathname === link.to
-                    ? 'text-brown dark:text-sage'
-                    : 'text-cream hover:text-brown dark:hover:text-sage'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.nav
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="md:hidden overflow-hidden"
+              aria-label="Mobile navigation"
+            >
+              <div className="pb-4 space-y-2">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block w-full text-left py-2 transition-colors ${
+                      location.pathname === link.to
+                        ? 'text-brown dark:text-sage'
+                        : 'text-cream hover:text-brown dark:hover:text-sage'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

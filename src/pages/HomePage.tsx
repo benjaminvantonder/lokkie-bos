@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Palette, Sparkles, Leaf, ShieldCheck } from 'lucide-react';
+import { motion } from 'framer-motion';
+import AnimatedSection from '../components/AnimatedSection';
+import Parallax from '../components/Parallax';
 
 const features = [
   {
@@ -48,45 +51,91 @@ const featuredWorks = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 export default function HomePage() {
   return (
     <>
       <section className="min-h-screen flex items-center justify-center py-20 px-4 transition-colors duration-300">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mb-8"
+          >
             <Palette size={64} className="text-sage" strokeWidth={1.5} />
-          </div>
+          </motion.div>
 
-          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 text-brown dark:text-sage">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-serif font-bold mb-6 text-brown dark:text-sage"
+          >
             lokkie-bos
-          </h1>
+          </motion.h1>
 
-          <h2 className="text-4xl md:text-5xl font-serif text-black dark:text-cream mb-8">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-script text-5xl md:text-6xl text-sage mb-4"
+          >
             Welcome
-          </h2>
+          </motion.h2>
 
-          <p className="text-lg md:text-xl font-noto text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-lg md:text-xl font-noto text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed"
+          >
             Create it from a place where passion and imagination meet. In watercolour,
-            I find a quiet magic—where pigment and water move freely, shaping each
+            I find a quiet magic — where pigment and water move freely, shaping each
             piece with intention and feeling.
-          </p>
+          </motion.p>
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-200 to-green-200 mb-4 shadow-lg" aria-hidden="true"></div>
-              <p className="text-sm font-noto text-gray-600 dark:text-gray-400">Watercolour Magic</p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            <Parallax speed={0.2}>
+              <div className="flex flex-col items-center">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-200 to-green-200 mb-4 shadow-lg" aria-hidden="true"></div>
+              <p className="text-sm font-script text-sage text-lg">Watercolour Magic</p>
             </div>
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-brown to-sage mb-4 shadow-lg" aria-hidden="true"></div>
-              <p className="text-sm font-noto text-gray-600 dark:text-gray-400">Nature Inspired</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-200 to-yellow-200 mb-4 shadow-lg" aria-hidden="true"></div>
-              <p className="text-sm font-noto text-gray-600 dark:text-gray-400">Handcrafted Art</p>
-            </div>
-          </div>
+            </Parallax>
+            <Parallax speed={0.1}>
+              <div className="flex flex-col items-center">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-brown to-sage mb-4 shadow-lg" aria-hidden="true"></div>
+                <p className="text-sm font-script text-sage text-lg">Nature Inspired</p>
+              </div>
+            </Parallax>
+            <Parallax speed={0.3}>
+              <div className="flex flex-col items-center">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-green-200 to-yellow-200 mb-4 shadow-lg" aria-hidden="true"></div>
+                <p className="text-sm font-script text-sage text-lg">Handcrafted Art</p>
+              </div>
+            </Parallax>
+          </motion.div>
 
-          <div className="mt-12 flex gap-4 justify-center flex-wrap">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-12 flex gap-4 justify-center flex-wrap"
+          >
             <Link
               to="/shop"
               className="inline-block bg-sage hover:bg-brown dark:hover:bg-brown text-cream px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg"
@@ -99,22 +148,40 @@ export default function HomePage() {
             >
               Get in Touch
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
+      <AnimatedSection className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             Why Lokkie-bos?
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-16 max-w-2xl mx-auto">
-            Every piece is created with intention, from first brushstroke to final detail.
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-gray-600 dark:text-gray-400 font-noto mb-16 max-w-2xl mx-auto"
+          >
+            <span className="font-script text-sage text-2xl">Every piece is created with intention, from first brushstroke to final detail.</span>
+          </motion.p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {features.map((feature) => (
-              <div key={feature.title} className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <motion.div key={feature.title} variants={itemVariants} className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex justify-center mb-4">
                   <div className="bg-sage/20 p-4 rounded-full text-sage">
                     {feature.icon}
@@ -122,24 +189,42 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-xl font-serif text-brown dark:text-sage mb-3">{feature.title}</h3>
                 <p className="font-noto text-gray-600 dark:text-gray-400 text-sm">{feature.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
+      <AnimatedSection className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             Featured Works
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto">
-            A glimpse into the collection — each piece tells its own story.
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto"
+          >
+            <span className="font-script text-sage text-2xl">A glimpse into the collection — each piece tells its own story.</span>
+          </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             {featuredWorks.map((work) => (
-              <div key={work.title} className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <motion.div key={work.title} variants={itemVariants} className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                 <div className={`aspect-square bg-gradient-to-br ${work.gradient} flex items-center justify-center`}>
                   <Palette size={48} className="text-white/60" />
                 </div>
@@ -159,31 +244,59 @@ export default function HomePage() {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center mt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center mt-12"
+          >
             <Link
               to="/shop"
               className="inline-block bg-sage hover:bg-brown dark:hover:bg-brown text-cream px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg"
             >
               View Full Collection
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 px-4 bg-sage/10 dark:bg-gray-900 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage mb-6">
+      <AnimatedSection className="py-20 px-4 bg-sage/10 dark:bg-gray-900 transition-colors duration-300 relative overflow-hidden">
+        <Parallax speed={0.08}>
+          <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-sage/5" aria-hidden="true"></div>
+          <div className="absolute bottom-10 right-10 w-48 h-48 rounded-full bg-sage/5" aria-hidden="true"></div>
+        </Parallax>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-serif text-brown dark:text-sage mb-6"
+          >
             Ready to Find Your Piece?
-          </h2>
-          <p className="font-noto text-gray-700 dark:text-gray-300 mb-8 max-w-xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-noto text-gray-700 dark:text-gray-300 mb-8 max-w-xl mx-auto"
+          >
             Browse the full collection or reach out for a custom commission.
-            Let's create something beautiful together.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
+            <span className="font-script text-sage text-2xl">Let's create something beautiful together.</span>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex gap-4 justify-center flex-wrap"
+          >
             <Link
               to="/shop"
               className="bg-sage hover:bg-brown text-cream px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg"
@@ -196,9 +309,9 @@ export default function HomePage() {
             >
               Request Commission
             </Link>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

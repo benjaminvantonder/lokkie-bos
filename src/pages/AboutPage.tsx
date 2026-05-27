@@ -1,4 +1,6 @@
 import { Brush, Heart, Sparkles, Palette, Eye, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
+import AnimatedSection from '../components/AnimatedSection';
 
 const processSteps = [
   {
@@ -73,20 +75,45 @@ const faqs = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
 export default function AboutPage() {
   return (
     <>
-      <section className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
+      <AnimatedSection className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             About Lokkie-bos
-          </h1>
-          <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-16 max-w-2xl mx-auto">
-            Every stroke tells a story, every color holds emotion.
-          </p>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-gray-600 dark:text-gray-400 font-noto mb-16 max-w-2xl mx-auto"
+          >
+            <span className="font-script text-sage text-2xl">Every stroke tells a story, every colour holds emotion.</span>
+          </motion.p>
 
-          <div className="grid md:grid-cols-3 gap-12 mb-16">
-            <div className="text-center">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid md:grid-cols-3 gap-12 mb-16"
+          >
+            <motion.div variants={itemVariants} className="text-center">
               <div className="flex justify-center mb-4">
                 <div className="bg-sage/20 p-4 rounded-full">
                   <Brush className="text-sage" size={32} />
@@ -96,9 +123,9 @@ export default function AboutPage() {
               <p className="font-noto text-gray-600 dark:text-gray-400">
                 Each piece is meticulously created by hand, ensuring unique character and quality in every artwork.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
+            <motion.div variants={itemVariants} className="text-center">
               <div className="flex justify-center mb-4">
                 <div className="bg-sage/20 p-4 rounded-full">
                   <Heart className="text-sage" size={32} />
@@ -108,9 +135,9 @@ export default function AboutPage() {
               <p className="font-noto text-gray-600 dark:text-gray-400">
                 Passion and dedication flow into every creation, bringing warmth and soul to your space.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="text-center">
+            <motion.div variants={itemVariants} className="text-center">
               <div className="flex justify-center mb-4">
                 <div className="bg-sage/20 p-4 rounded-full">
                   <Sparkles className="text-sage" size={32} />
@@ -120,54 +147,87 @@ export default function AboutPage() {
               <p className="font-noto text-gray-600 dark:text-gray-400">
                 No two pieces are exactly alike. Own a truly one-of-a-kind work of art.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-8">
+      <AnimatedSection className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
+        <div className="max-w-3xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             The Artist's Story
-          </h2>
-          <div className="prose prose-lg mx-auto font-noto text-gray-700 dark:text-gray-300 space-y-4">
-            <p>
-              Lokkie-bos was born from a love of quiet observation — the way light falls on a leaf,
-              the intricate patterns of a fern, the soft gradient of a sunset over the South African
-              landscape. Every piece I create starts with a moment of noticing something beautiful.
-            </p>
-            <p>
-              Working primarily in watercolour and fineliner, I let the medium guide the process.
-              Watercolour has a mind of its own — pigment blooms across wet paper, creating textures
-              and blends that cannot be fully controlled. That unpredictability is where the magic lives.
-            </p>
-            <p>
-              My fineliner work, on the other hand, is about precision and patience. Fine lines build
-              into intricate patterns, revealing details that reward a closer look. When combined with
-              watercolour, the two techniques create a unique tension — fluid washes against sharp,
-              deliberate lines.
-            </p>
-            <p>
-              Each piece is signed, dated, and shipped with care. Whether you're looking for a
-              statement piece for your home or a meaningful gift, I hope my art brings a touch of
-              nature's quiet beauty into your space.
-            </p>
-          </div>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center font-script text-xl text-sage mb-10"
+          >
+            Where water meets pigment, and patience becomes art
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="bg-cream dark:bg-gray-800 rounded-2xl p-8 md:p-10 shadow-lg border-l-4 border-sage"
+          >
+            <div className="font-noto text-gray-700 dark:text-gray-300 space-y-5 leading-relaxed">
+              <p>
+                Lokkie-bos was born from quiet observation — the way light falls on a leaf,
+                the soft gradient of a sunset over the South African landscape. Every piece
+                starts with noticing something beautiful.
+              </p>
+              <p>
+                In watercolour, pigment blooms across wet paper, creating textures that cannot
+                be fully controlled. That unpredictability is where the magic lives.
+              </p>
+              <p>
+                Each piece is signed, dated, and shipped with care. Whether for your home or
+                as a gift, I hope my art brings a touch of nature's quiet beauty into your space.
+              </p>
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
+      <AnimatedSection className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             My Creative Process
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto">
-            From first spark of inspiration to the final brushstroke.
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto"
+          >
+            <span className="font-script text-sage text-2xl">From first spark of inspiration to the final brushstroke.</span>
+          </motion.p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
             {processSteps.map((step, i) => (
-              <div key={step.title} className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+              <motion.div key={step.title} variants={itemVariants} className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
                 <div className="flex justify-center mb-4">
                   <div className="bg-sage/20 p-4 rounded-full text-sage relative">
                     {step.icon}
@@ -178,24 +238,42 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-serif text-brown dark:text-sage mb-3">{step.title}</h3>
                 <p className="font-noto text-gray-600 dark:text-gray-400 text-sm">{step.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
+      <AnimatedSection className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             Price List
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto">
-            All prices are in South African Rand (ZAR).
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto"
+          >
+            <span className="font-script text-sage text-2xl">All prices are in South African Rand (ZAR).</span>
+          </motion.p>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          >
             {pricing.map((group) => (
-              <div key={group.category} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg transition-colors duration-300">
+              <motion.div key={group.category} variants={itemVariants} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg transition-colors duration-300">
                 <h3 className="font-bold text-xl mb-6 text-brown dark:text-sage text-center">{group.category}</h3>
                 <div className="space-y-4 font-noto">
                   {group.items.map((item) => (
@@ -205,39 +283,67 @@ export default function AboutPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <p className="text-sm font-noto text-gray-600 dark:text-gray-400 text-center mt-8 italic max-w-xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-sm font-noto text-gray-600 dark:text-gray-400 text-center mt-8 italic max-w-xl mx-auto"
+          >
             Please note: each custom artwork will incur an additional fee of R60 per hour for
             time spent on the piece. The first hour is free of charge.
-          </p>
+          </motion.p>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
+      <AnimatedSection className="py-20 px-4 bg-cream dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl md:text-4xl font-serif text-brown dark:text-sage text-center mb-4"
+          >
             Frequently Asked Questions
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto">
-            Everything you need to know about ordering and commissions.
-          </p>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto"
+          >
+            <span className="font-script text-sage text-2xl">Everything you need to know about ordering and commissions.</span>
+          </motion.p>
 
-          <div className="space-y-4">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
             {faqs.map((faq) => (
-              <details key={faq.q} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm group open:shadow-md transition-shadow">
+              <motion.details
+                key={faq.q}
+                variants={itemVariants}
+                className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm group open:shadow-md transition-shadow"
+              >
                 <summary className="font-serif text-lg text-brown dark:text-sage cursor-pointer list-none flex justify-between items-center">
                   {faq.q}
                   <span className="text-sage group-open:rotate-180 transition-transform text-2xl font-bold">▾</span>
                 </summary>
                 <p className="mt-4 font-noto text-gray-600 dark:text-gray-400 leading-relaxed">{faq.a}</p>
-              </details>
+              </motion.details>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

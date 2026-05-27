@@ -3,6 +3,8 @@ import { supabase } from '../lib/supabase';
 import type { Product } from '../lib/database.types';
 import ProductCard from '../components/ProductCard';
 import { AlertCircle, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
+import AnimatedSection from '../components/AnimatedSection';
 
 const sizeFilters = ['all', 'A5', 'A4', 'A3'] as const;
 type SizeFilter = (typeof sizeFilters)[number];
@@ -13,6 +15,16 @@ type CategoryFilter = (typeof categoryFilters)[number];
 interface ProductWithCategory extends Product {
   categories: { name: string } | null;
 }
+
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+};
 
 export default function ShopPage() {
   const [products, setProducts] = useState<ProductWithCategory[]>([]);
@@ -61,17 +73,31 @@ export default function ShopPage() {
   });
 
   return (
-    <section className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 min-h-screen transition-colors duration-300">
+    <AnimatedSection className="py-20 px-4 bg-white/50 dark:bg-gray-800/30 min-h-screen transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl font-serif text-brown dark:text-sage text-center mb-4"
+        >
           Our Collection
-        </h1>
-        <p className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto">
-          Each piece is crafted with care, bringing together the fluidity of watercolour
-          and the precision of fine detail work.
-        </p>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-center text-gray-600 dark:text-gray-400 font-noto mb-12 max-w-2xl mx-auto"
+        >
+          <span className="font-script text-sage text-2xl">Each piece is crafted with care, bringing together the fluidity of watercolour and the precision of fine detail work.</span>
+        </motion.p>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8"
+        >
           <div className="flex justify-center gap-4 flex-wrap">
             {sizeFilters.map((filter) => (
               <button
@@ -99,9 +125,14 @@ export default function ShopPage() {
               className="pl-10 pr-4 py-2 rounded-full bg-cream dark:bg-gray-700 text-gray-700 dark:text-gray-300 border border-sage/30 focus:outline-none focus:ring-2 focus:ring-sage w-full md:w-64"
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex justify-center gap-4 mb-12 flex-wrap">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex justify-center gap-4 mb-12 flex-wrap"
+        >
           {categoryFilters.map((filter) => (
             <button
               key={filter}
@@ -116,17 +147,25 @@ export default function ShopPage() {
               {filter === 'all' ? 'All Categories' : filter}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {loading && (
           <div className="text-center py-12" role="status" aria-label="Loading products">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-sage"></div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              className="inline-block rounded-full h-12 w-12 border-b-2 border-sage"
+            ></motion.div>
             <p className="mt-4 font-noto text-gray-600 dark:text-gray-400">Loading products...</p>
           </div>
         )}
 
         {error && !loading && (
-          <div className="text-center py-12">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-12"
+          >
             <AlertCircle size={48} className="mx-auto text-red-500 mb-4" />
             <p className="font-noto text-gray-700 dark:text-gray-300 mb-4">{error}</p>
             <button
@@ -135,11 +174,15 @@ export default function ShopPage() {
             >
               Try Again
             </button>
-          </div>
+          </motion.div>
         )}
 
         {!loading && !error && filteredProducts.length === 0 && (
-          <div className="text-center py-12">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
             <p className="font-noto text-gray-600 dark:text-gray-400 text-lg">
               No products match your current filters.
             </p>
@@ -149,17 +192,24 @@ export default function ShopPage() {
             >
               Clear Filters
             </button>
-          </div>
+          </motion.div>
         )}
 
         {!loading && !error && filteredProducts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <motion.div key={product.id} variants={itemVariants}>
+                <ProductCard product={product} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

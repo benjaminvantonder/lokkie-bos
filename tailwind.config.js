@@ -14,6 +14,7 @@ export default {
         sans: ['Open Sans', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
         noto: ['Noto Sans', 'sans-serif'],
+        script: ['Caveat', 'cursive'],
       },
     },
   },
